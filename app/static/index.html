@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ParkMind AI | AI Parking Solution Architect POC</title>
+  <link rel="stylesheet" href="/dashboard/styles.css?v=20261002-18">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-lockup">
+      <div class="brand-mark">PM</div>
+      <div>
+        <div class="eyebrow">AI SOLUTION ARCHITECTURE · SMART PARKING</div>
+        <h1>ParkMind <span>AI</span></h1>
+        <p>Multi-agent parking intelligence with RAG, OpenAI, safe tools and live operations.</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <a class="live-url-pill" id="live-url" href="/parking/" title="Current ParkMind live address">parking.localhost</a>
+      <div id="mode-pill" class="mode-pill" title="OpenAI is optional. Without a key, ParkMind runs deterministic demo answers.">INITIALIZING</div>
+      <div class="live-pill"><i></i> LIVE TELEMETRY</div>
+    </div>
+  </header>
+
+  <nav class="page-nav">
+    <a href="#architect-profile">Architect</a>
+    <a href="#poc-overview">POC Overview</a>
+    <a href="#poc-toolbox">POC Toolbox</a>
+    <a href="#operations">Live Operations</a>
+    <a href="#parking-slots">Parking Slots</a>
+    <a href="#assistant">AI Assistant</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#features">Features</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#code-walkthrough">Code Walkthrough</a>
+  </nav>
+
+  <main class="shell">
+    <section class="architect-profile panel" id="architect-profile" data-section="architect-profile">
+      <div class="architect-identity interactive-box" data-detail-key="architect-profile">
+        <div class="flag-wrap"><img src="/dashboard/assets/india-flag.svg" alt="India flag"><span>INDIA · AI ARCHITECTURE PORTFOLIO</span></div>
+        <div class="identity-main">
+          <div class="avatar-orbit" aria-hidden="true"><span>VU</span><i></i><i></i></div>
+          <div><div class="section-kicker">AI ARCHITECT</div><h2>Vishal Upadhyay</h2><p>Agentic AI · Multi-Agent Systems · RAG · AI Solution Architecture</p></div>
+        </div>
+        <div class="identity-links">
+          <a class="contact-chip" href="tel:+917359175551"><span class="chip-icon">☎</span><span><b>Phone</b><small>+91-7359175551</small></span></a>
+          <a class="contact-chip" href="mailto:vishalupadhyay091@gmail.com"><span class="chip-icon">@</span><span><b>Email</b><small>vishalupadhyay091@gmail.com</small></span></a>
+          <a class="contact-chip" href="https://www.linkedin.com/in/vishal-aiml/" target="_blank" rel="noreferrer"><span class="chip-icon">in</span><span><b>LinkedIn</b><small>vishal-aiml</small></span></a>
+          <a class="contact-chip" href="https://github.com/vishal-aiml" target="_blank" rel="noreferrer"><span class="chip-icon">GH</span><span><b>GitHub</b><small>vishal-aiml</small></span></a>
+        </div>
+      </div>
+      <div class="qr-zone">
+        <a class="qr-card" href="https://www.linkedin.com/in/vishal-aiml/" target="_blank" rel="noreferrer"><img src="/dashboard/assets/linkedin-qr.png" alt="LinkedIn QR code"><b>LinkedIn</b><small>Scan profile</small></a>
+        <a class="qr-card" href="https://github.com/vishal-aiml" target="_blank" rel="noreferrer"><img src="/dashboard/assets/github-qr.png" alt="GitHub QR code"><b>GitHub</b><small>Scan repositories</small></a>
+      </div>
+    </section>
+
+    <section class="hero panel" id="poc-overview">
+      <div class="hero-copy">
+        <div class="section-kicker">PORTFOLIO POC · END-TO-END AI SYSTEM</div>
+        <h2>Parking is the demo.<br><span>AI architecture is the story.</span></h2>
+        <p class="hero-lead">Ask one natural-language question. ParkMind can understand the intent, choose the right specialists, read live parking state, retrieve facility knowledge, execute safe actions and combine the results into one answer.</p>
+        <div class="hero-actions">
+          <a class="primary-btn" href="#assistant">Try the AI Assistant</a>
+        </div>
+        <div class="hero-points">
+          <span><b>01</b> Supervisor routing</span>
+          <span><b>02</b> Parallel agents</span>
+          <span><b>03</b> Grounded synthesis</span>
+          <span><b>04</b> Real-time UI</span>
+        </div>
+        <div class="client-value-row">
+          <article class="client-value-card" data-detail-key="scenario">
+            <span class="mini-label">BUSINESS PROBLEM</span><b>Parking teams see data in many places.</b>
+            <p>Occupancy, policy, navigation and payment signals are useful only when they work together.</p>
+          </article>
+          <article class="client-value-card" data-detail-key="supervisor">
+            <span class="mini-label">AI RESPONSE</span><b>One request becomes coordinated work.</b>
+            <p>The Supervisor chooses only the specialists needed for the question.</p>
+          </article>
+          <article class="client-value-card" data-detail-key="dashboard">
+            <span class="mini-label">CLIENT VALUE</span><b>One screen for action and visibility.</b>
+            <p>Live operations and AI answers appear together, with clear business boundaries.</p>
+          </article>
+        </div>
+
+      </div>
+      <div class="hero-visual">
+        <div class="signal-card">
+          <div class="signal-label">REQUEST</div>
+          <div class="signal-title">“Find an EV spot near the entrance, tell me the price and guide me there.”</div>
+          <div class="signal-flow">
+            <div class="flow-node"><b>Supervisor</b><small>Understand + route</small></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-branches">
+              <div class="mini-node"><b>Occupancy</b><small>Live slots</small></div>
+              <div class="mini-node"><b>RAG</b><small>Price + EV policy</small></div>
+              <div class="mini-node"><b>Navigation</b><small>Indoor route</small></div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node"><b>Synthesis</b><small>One answer</small></div>
+          </div>
+        </div>
+        <div class="hero-note"><span>DESIGN PRINCIPLE</span> LLMs decide and explain; deterministic services validate and mutate state.</div>
+      </div>
+    </section>
+
+    <section class="panel toolbox-section" id="poc-toolbox" data-section="poc-toolbox">
+      <div class="section-heading toolbox-heading">
+        <div><div class="section-kicker">POC TOOLBOX</div><h2>The tools behind the parking experience</h2></div>
+        <p>Each tool has one clear job. Together they turn a simple parking question into a grounded, observable AI workflow.</p>
+      </div>
+      <div class="tool-grid">
+        <article class="tool-box" data-detail-key="openai"><span class="tool-label">AI LAYER</span><b>OpenAI</b><small>Reasoning, embeddings and vision</small><em>Used when language or image understanding adds value.</em></article>
+        <article class="tool-box" data-detail-key="langgraph"><span class="tool-label">ORCHESTRATION</span><b>LangGraph</b><small>State, routing and parallel work</small><em>Moves work from Supervisor to focused agents.</em></article>
+        <article class="tool-box" data-detail-key="rag"><span class="tool-label">KNOWLEDGE</span><b>RAG</b><small>Search, rerank and ground</small><em>Keeps parking policy and pricing tied to controlled content.</em></article>
+        <article class="tool-box" data-detail-key="tools"><span class="tool-label">SAFE ACTION</span><b>Business Tools</b><small>Validate, mutate and audit</small><em>State-changing actions follow explicit business rules.</em></article>
+        <article class="tool-box" data-detail-key="occupancy"><span class="tool-label">LIVE STATE</span><b>Parking State</b><small>Spaces, floors and availability</small><em>The source used for current slot decisions and counts.</em></article>
+        <article class="tool-box" data-detail-key="websocket"><span class="tool-label">REAL-TIME</span><b>WebSocket + SSE</b><small>Telemetry and agent trace</small><em>Pushes live changes and orchestration progress to the browser.</em></article>
+        <article class="tool-box" data-detail-key="analytics"><span class="tool-label">BUSINESS</span><b>Analytics</b><small>Entries, exits and revenue</small><em>Turns events into simple operator metrics and trends.</em></article>
+        <article class="tool-box" data-detail-key="vision"><span class="tool-label">VISION</span><b>Vision Agent</b><small>Parking image understanding</small><em>Estimates visible occupancy from an uploaded image.</em></article>
+      </div>
+    </section>
+
+    <section class="metrics-grid" aria-label="Live parking dashboard metrics">
+      <article class="metric panel" data-metric-tone="capacity"><div class="metric-label">TOTAL SPACES</div><strong id="total">—</strong><small><b>Capacity:</b> every configured parking bay across all floors.</small><em>Formula: count(all configured spots).</em></article>
+      <article class="metric panel" data-metric-tone="supply"><div class="metric-label">AVAILABLE</div><strong id="available">—</strong><small><b>Supply:</b> bays currently safe to recommend.</small><em>Formula: status = available.</em></article>
+      <article class="metric panel" data-metric-tone="usage"><div class="metric-label">OCCUPIED</div><strong id="occupied">—</strong><small><b>Usage:</b> bays currently holding a vehicle.</small><em>Formula: status = occupied.</em></article>
+      <article class="metric panel" data-metric-tone="pressure"><div class="metric-label">OCCUPANCY</div><strong id="occupancy">—</strong><small><b>Pressure:</b> how full the facility is right now.</small><em id="updated">Waiting for telemetry · occupied ÷ total × 100</em></article>
+      <article class="metric panel" data-detail-key="ops-entries" data-metric-tone="traffic"><div class="metric-label">ENTRIES TODAY</div><strong id="entries-today-top">—</strong><small><b>Demand:</b> vehicles recorded entering the lot.</small><em>Updated from gate events.</em></article>
+      <article class="metric panel" data-detail-key="ops-exits" data-metric-tone="traffic"><div class="metric-label">EXITS TODAY</div><strong id="exits-today-top">—</strong><small><b>Turnover:</b> vehicles recorded leaving the lot.</small><em>Updated from exit events.</em></article>
+      <article class="metric panel" data-detail-key="ops-fees" data-metric-tone="money"><div class="metric-label">FEES COLLECTED</div><strong id="fees-today-top">₹—</strong><small><b>Revenue:</b> successful parking/payment collections.</small><em>Sum of recorded payment amounts.</em></article>
+      <article class="metric panel" data-detail-key="ops-due" data-metric-tone="warning"><div class="metric-label">DUE / OVERSTAY</div><strong id="due-today-top">₹—</strong><small><b>Exposure:</b> simulated outstanding parking charges.</small><em>Sum of active due / overstay events.</em></article>
+    </section>
+
+    <section class="operations-section" id="operations" data-section="operations">
+      <div class="section-heading">
+        <div><div class="section-kicker">LIVE PARKING OPERATIONS</div><h2>Entries, exits, revenue & due charges</h2></div>
+        <p>The dashboard simulates a live control room. Numbers change automatically so you can see how an operational system can expose business telemetry alongside AI orchestration.</p>
+      </div>
+
+      <div class="operations-kpis">
+        <article class="panel ops-kpi interactive-box" data-detail-key="ops-entries"><span>ENTRY COUNT · TODAY</span><strong id="entries-today">—</strong><small><b id="entries-interval">+0</b> vehicles in latest interval</small></article>
+        <article class="panel ops-kpi interactive-box" data-detail-key="ops-exits"><span>EXIT COUNT · TODAY</span><strong id="exits-today">—</strong><small><b id="exits-interval">+0</b> vehicles out in latest interval</small></article>
+        <article class="panel ops-kpi interactive-box" data-detail-key="ops-fees"><span>PARKING FEES COLLECTED</span><strong id="fees-today">₹—</strong><small>Revenue collected by parking/payment flows</small></article>
+        <article class="panel ops-kpi interactive-box warning" data-detail-key="ops-due"><span>PARKING DUE / OVERSTAY</span><strong id="due-today">₹—</strong><small>Simulated outstanding / penalty exposure</small></article>
+        <article class="panel ops-kpi interactive-box" data-detail-key="ops-stay"><span>AVERAGE STAY</span><strong id="avg-stay">— min</strong><small>Moving operational estimate</small></article>
+        <article class="panel ops-kpi interactive-box" data-detail-key="ops-net"><span>NET VEHICLE FLOW</span><strong id="net-flow">—</strong><small>Entries minus exits</small></article>
+      </div>
+
+      <div class="operations-main">
+        <article class="panel chart-card interactive-box" data-detail-key="chart-flow">
+          <div class="panel-head"><div><div class="section-kicker">TRAFFIC FLOW</div><h3>Entries vs exits · live intervals</h3></div><span class="chart-live"><i></i> AUTO REFRESH</span></div>
+          <div class="chart-legend"><span><i class="line-dot entry"></i>Entries</span><span><i class="line-dot exit"></i>Exits</span></div>
+          <div id="flow-chart" class="chart-wrap" aria-label="Entries and exits line chart"></div>
+        </article>
+
+        <article class="panel chart-card interactive-box" data-detail-key="chart-money">
+          <div class="panel-head"><div><div class="section-kicker">COMMERCIAL TELEMETRY</div><h3>Fees collected vs due charges</h3></div><span id="revenue-state">Live</span></div>
+          <div class="chart-legend"><span><i class="line-dot fees"></i>Fees</span><span><i class="line-dot due"></i>Due / overstay</span></div>
+          <div id="money-chart" class="chart-wrap" aria-label="Fees and due charges chart"></div>
+        </article>
+
+        <article class="panel activity-card interactive-box" data-detail-key="activity-feed">
+          <div class="panel-head"><div><div class="section-kicker">REAL-TIME ACTIVITY</div><h3>Parking event stream</h3></div><span id="activity-count">0 events</span></div>
+          <div id="activity-feed" class="activity-feed"></div>
+        </article>
+      </div>
+
+      <div class="ops-insights">
+        <article class="panel insight-card interactive-box" data-detail-key="ops-event-driven"><div class="insight-icon">01</div><div><b>Event-driven operations</b><p>Gate entries, exits, payments and overdue events can arrive independently. The UI turns them into a single operational picture.</p></div></article>
+        <article class="panel insight-card interactive-box" data-detail-key="ops-ai-layer"><div class="insight-icon">02</div><div><b>AI + operations work together</b><p>AI answers “what should I do?”, while telemetry answers “what is happening right now?”. They meet in the same dashboard.</p></div></article>
+        <article class="panel insight-card interactive-box" data-detail-key="ops-production"><div class="insight-icon">03</div><div><b>Production replacement points</b><p>This simulator can later be replaced by gate sensors, ANPR, payment events and a real billing service without redesigning the UI contract.</p></div></article>
+      </div>
+    </section>
+
+    <section class="panel parking-section lot-panel" id="parking-slots" data-section="parking-slots">
+        <div class="panel-head">
+          <div><div class="section-kicker">LIVE STATE</div><h2>Parking Control Surface</h2></div>
+          <span id="lot-name">ParkMind Demo Lot</span>
+        </div>
+        <div class="parking-status-line"><span class="live-mini"><i></i> LIVE SENSOR SIMULATION</span><span class="demo-mini">DEMO AI · OpenAI optional</span></div>
+        <div class="legend">
+          <span><i class="dot available"></i>Available</span>
+          <span><i class="dot occupied"></i>Occupied</span>
+          <span><i class="dot reserved"></i>Reserved</span>
+          <span><i class="dot maintenance"></i>Maintenance</span>
+        </div>
+        <div class="floor-tabs">
+          <button class="active">All</button><button>P1</button><button>P2</button><button>P3</button>
+        </div>
+        <div id="spot-grid" class="spot-grid"></div>
+    </section>
+
+    <section class="workspace-section" id="assistant" data-section="assistant">
+      <div class="workspace-heading section-heading">
+        <div><div class="section-kicker">AI EXPERIENCE</div><h2>Parking Assistant</h2></div>
+        <span class="workspace-live"><i></i> AI READY</span>
+      </div>
+      <div class="workspace-grid">
+      <div class="panel assistant-panel">
+        <div class="panel-head">
+          <div><div class="section-kicker">AI OPERATIONS</div><h2>Parking Assistant</h2></div>
+          <span id="request-state">Ready</span>
+        </div>
+        <div id="chat" class="chat"></div>
+        <div class="chips">
+          <button data-q="Find me the nearest available parking">Nearest parking</button>
+          <button data-q="Find an EV charging spot near the entrance and tell me the price and route">EV + price + route</button>
+          <button data-q="What are the accessibility parking rules?">Accessibility rules</button>
+          <button data-q="Show occupancy analytics by zone">Zone analytics</button>
+          <button data-q="Reserve P1-A01 for 2 hours">Reserve P1-A01</button>
+        </div>
+        <form id="chat-form" class="chat-form"><input id="query" autocomplete="off" placeholder="Ask the Supervisor Agent…"><button>Run</button></form>
+        <div class="vision-row">
+          <label class="file-input"><span class="vision-icon" aria-hidden="true">⌁</span><input id="image-file" type="file" accept="image/*"><span>Parking image</span></label>
+          <button id="vision-btn" class="secondary-btn small">Analyze image</button>
+        </div>
+        <div id="route-strip" class="route-strip hidden"></div>
+      </div>
+
+      <div class="panel control-panel">
+        <div class="panel-head">
+          <div><div class="section-kicker">AI STACK</div><h2>Services in this POC</h2></div>
+          <span>6 services</span>
+        </div>
+        <div class="control-list">
+          <div class="control-item"><span>LLM</span><b>OpenAI Responses</b><small>Routing + synthesis</small></div>
+          <div class="control-item"><span>WORKFLOW</span><b>LangGraph</b><small>State + parallel fan-out</small></div>
+          <div class="control-item"><span>RAG</span><b>Local vector index</b><small>Knowledge retrieval + rerank</small></div>
+          <div class="control-item"><span>DATA</span><b>SQLite</b><small>Parking + reservations + audit</small></div>
+          <div class="control-item"><span>STREAM</span><b>WebSocket + SSE</b><small>Live lot + agent trace</small></div>
+          <div class="control-item"><span>VISION</span><b>OpenAI Vision</b><small>Image-based occupancy estimate</small></div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <section class="panel architecture-section" id="architecture" data-section="architecture">
+      <div class="section-heading">
+        <div><div class="section-kicker">SYSTEM ARCHITECTURE</div><h2>From request to business outcome</h2></div>
+        <span class="section-status">Five connected stages</span>
+      </div>
+      <div class="flow-journey">
+        <article class="flow-stage stage-experience" data-detail-key="user">
+          <div class="flow-stage-top"><span class="flow-no">01</span><span class="flow-main-label">EXPERIENCE</span></div>
+          <h3>User / Operator</h3><p>Starts with a normal request, image or dashboard action.</p>
+          <div class="sub-flow"><span>Text request</span><span>Parking image</span><span>Live dashboard</span></div>
+        </article>
+        <div class="journey-arrow">→</div>
+        <article class="flow-stage stage-orchestration" data-detail-key="supervisor">
+          <div class="flow-stage-top"><span class="flow-no">02</span><span class="flow-main-label">ORCHESTRATION</span></div>
+          <h3>Supervisor Agent</h3><p>Reads the request and selects the smallest useful set of specialists.</p>
+          <div class="sub-flow"><span>Intent</span><span>Context</span><span>Route</span></div>
+        </article>
+        <div class="journey-arrow">→</div>
+        <article class="flow-stage stage-specialists" data-detail-key="parallel">
+          <div class="flow-stage-top"><span class="flow-no">03</span><span class="flow-main-label">SPECIALISTS</span></div>
+          <h3>Parallel Agents</h3><p>Focused agents work on live state, policy, navigation and analytics.</p>
+          <div class="sub-flow"><span>Occupancy</span><span>RAG</span><span>Navigation</span><span>Analytics</span></div>
+        </article>
+        <div class="journey-arrow">→</div>
+        <article class="flow-stage stage-grounding" data-detail-key="tools">
+          <div class="flow-stage-top"><span class="flow-no">04</span><span class="flow-main-label">GROUND + ACT</span></div>
+          <h3>Knowledge + Tools</h3><p>RAG supplies trusted policy context while tools enforce business rules.</p>
+          <div class="sub-flow"><span>Retrieve</span><span>Rerank</span><span>Validate</span><span>Audit</span></div>
+        </article>
+        <div class="journey-arrow">→</div>
+        <article class="flow-stage stage-delivery" data-detail-key="synthesis">
+          <div class="flow-stage-top"><span class="flow-no">05</span><span class="flow-main-label">DELIVERY</span></div>
+          <h3>Synthesis + Dashboard</h3><p>Combines results into one clear answer and exposes the live operational picture.</p>
+          <div class="sub-flow"><span>Synthesis</span><span>Trace</span><span>Live UI</span></div>
+        </article>
+      </div>
+      <div class="architecture-detail-grid">
+        <article class="arch-detail-box" data-detail-key="rag"><span class="detail-label">KNOWLEDGE PIPELINE</span><b>Document → chunk → search → rerank → grounded answer</b><p>Facility policies and pricing stay in controlled knowledge instead of being invented by the model.</p></article>
+        <article class="arch-detail-box" data-detail-key="tools"><span class="detail-label">SAFE ACTION PIPELINE</span><b>Request → validate → mutate → audit</b><p>Reservations and releases remain normal application operations with explicit checks.</p></article>
+        <article class="arch-detail-box" data-detail-key="occupancy"><span class="detail-label">LIVE STATE PIPELINE</span><b>Sensor/event → parking state → WebSocket → slot tile</b><p>The same backend snapshot drives the KPI counts and the individual parking slots.</p></article>
+        <article class="arch-detail-box" data-detail-key="analytics"><span class="detail-label">BUSINESS METRICS PIPELINE</span><b>Entry → exit → payment → due → trend</b><p>Operations turn raw events into traffic, revenue and overstay signals for the client team.</p></article>
+      </div>
+      <div class="architecture-callouts">
+        <div data-detail-key="supervisor"><b>One request, one coordinator</b><span>The Supervisor decides who should work.</span></div>
+        <div data-detail-key="parallel"><b>Small specialist responsibilities</b><span>Each agent has one clear job.</span></div>
+        <div data-detail-key="tools"><b>AI does not bypass business rules</b><span>Actions are checked before state changes.</span></div>
+        <div data-detail-key="rag"><b>Knowledge stays grounded</b><span>Policy and price answers come from retrieved content.</span></div>
+      </div>
+    </section>
+
+    <section class="features-section" id="features" data-section="features">
+      <div class="section-heading">
+        <div><div class="section-kicker">FEATURE MAP</div><h2>Every feature has a job</h2></div>
+        <span class="section-status">Click a feature to see how it works</span>
+      </div>
+      <div class="feature-grid">
+        <article data-detail-key="supervisor" class="feature-card"><span class="feature-no">01</span><div><h3>Supervisor Agent</h3><p>Reads the user request and selects the smallest useful group of specialists.</p><code>intent → routes → execute</code><div class="card-action-hint">Details <span>↗</span></div></div></article>
+        <article data-detail-key="parallel" class="feature-card"><span class="feature-no">02</span><div><h3>Multi-Agent Parallelism</h3><p>When a question needs live state, policy and route, those agents can work at the same time.</p><code>fan-out → gather</code><div class="card-action-hint">Details <span>↗</span></div></div></article>
+        <article data-detail-key="rag" class="feature-card"><span class="feature-no">03</span><div><h3>RAG + Re-ranking</h3><p>Turns facility documents into searchable knowledge and boosts the chunks most related to the question.</p><code>retrieve → score → ground</code><div class="card-action-hint">Details <span>↗</span></div></div></article>
+        <article data-detail-key="openai" class="feature-card"><span class="feature-no">04</span><div><h3>OpenAI Services</h3><p>Uses the model for routing, synthesis, embeddings and image understanding without putting database writes in the prompt.</p><code>LLM + embeddings + vision</code><div class="card-action-hint">Details <span>↗</span></div></div></article>
+        <article data-detail-key="tools" class="feature-card"><span class="feature-no">05</span><div><h3>Deterministic Tools</h3><p>Availability, reservation and release are normal application code with explicit validations.</p><code>validate → mutate → audit</code><div class="card-action-hint">Details <span>↗</span></div></div></article>
+        <article data-detail-key="occupancy" class="feature-card"><span class="feature-no">06</span><div><h3>Live Occupancy</h3><p>A background simulator changes parking state so the dashboard feels like a live system rather than a static mockup.</p><code>state → event → UI</code><div class="card-action-hint">Details <span>↗</span></div></div></article>
+        <article data-detail-key="websocket" class="feature-card"><span class="feature-no">07</span><div><h3>WebSocket Telemetry</h3><p>Pushes updated parking state to the browser without refreshing the page.</p><code>server → browser</code><div class="card-action-hint">Details <span>↗</span></div></div></article>
+        <article data-detail-key="sse" class="feature-card"><span class="feature-no">08</span><div><h3>SSE Agent Trace</h3><p>Shows which agents started and finished so the orchestration is observable, not hidden.</p><code>start → progress → final</code><div class="card-action-hint">Details <span>↗</span></div></div></article>
+        <article data-detail-key="vision" class="feature-card"><span class="feature-no">09</span><div><h3>Vision Agent</h3><p>Analyzes an uploaded parking image and reports visible occupancy with uncertainty.</p><code>image → estimate</code><div class="card-action-hint">Details <span>↗</span></div></div></article>
+        <article data-detail-key="audit" class="feature-card"><span class="feature-no">10</span><div><h3>Audit Trail</h3><p>Stores requests, routes and outcomes so you can inspect what the system did.</p><code>request → route → response</code><div class="card-action-hint">Details <span>↗</span></div></div></article>
+        <article data-detail-key="local" class="feature-card"><span class="feature-no">11</span><div><h3>Local-First Runtime</h3><p>No Docker or external database is needed for the POC. Everything can run from a Python virtual environment.</p><code>venv → run.py</code><div class="card-action-hint">Details <span>↗</span></div></div></article>
+        <article data-detail-key="production" class="feature-card"><span class="feature-no">12</span><div><h3>Production Upgrade Path</h3><p>The interfaces are separated so Redis, Postgres, real sensors and a production vector store can replace the local components later.</p><code>POC → production</code><div class="card-action-hint">Details <span>↗</span></div></div></article>
+      </div>
+    </section>
+
+    <section class="panel how-section" id="how-it-works" data-section="how-it-works">
+      <div class="section-heading">
+        <div><div class="section-kicker">REAL-TIME EXAMPLE</div><h2>How one request travels through the system</h2></div>
+        <span class="section-status">One request, end to end</span>
+      </div>
+      <div class="scenario-header">
+        <div class="scenario-label">USER REQUEST</div>
+        <div class="scenario-text">“Find an EV charging spot near the entrance, tell me the current price and guide me there.”</div>
+      </div>
+      <div class="timeline">
+        <article class="timeline-step"><div class="step-num">01</div><div><h3>Supervisor understands the sentence</h3><p>It sees three different jobs hidden inside one sentence: <b>find a live EV spot</b>, <b>read pricing policy</b>, and <b>build a route</b>.</p><code>occupancy + knowledge + navigation</code></div></article>
+        <article class="timeline-step"><div class="step-num">02</div><div><h3>LangGraph fans the work out</h3><p>The three specialists receive the same request context, but each one focuses on its own responsibility.</p><code>Send(agent_node, task)</code></div></article>
+        <article class="timeline-step"><div class="step-num">03</div><div><h3>Occupancy reads live state</h3><p>The agent checks SQLite and returns EV spots that are currently available, then sorts them by distance to the entrance.</p><code>status == "available" and spot_type == "ev"</code></div></article>
+        <article class="timeline-step"><div class="step-num">04</div><div><h3>Knowledge agent uses RAG</h3><p>It searches the facility documents, reranks matching chunks and returns the policy text needed for the price answer.</p><code>query → retrieve → rerank → answer</code></div></article>
+        <article class="timeline-step"><div class="step-num">05</div><div><h3>Navigation builds the route</h3><p>It uses parking metadata to create a clear POC route such as Gate A → floor → row → spot.</p><code>entrance → floor → row → spot</code></div></article>
+        <article class="timeline-step"><div class="step-num">06</div><div><h3>Synthesis explains the result</h3><p>The final agent combines the three outputs, trusts deterministic live state, cites RAG sources when present and avoids inventing a reservation.</p><code>specialist outputs → grounded response</code></div></article>
+      </div>
+      <div class="plain-english">
+        <div><span>IN SIMPLE TERMS</span><b>Supervisor = traffic controller.</b><p>It does not park the car itself. It decides which specialist should work.</p></div>
+        <div><span>IN SIMPLE TERMS</span><b>RAG = company memory.</b><p>It lets the system answer facility-specific questions from controlled documents.</p></div>
+        <div><span>IN SIMPLE TERMS</span><b>Tools = safety boundary.</b><p>They check the real rules before something changes in the system.</p></div>
+      </div>
+    </section>
+
+    <section class="panel code-section" id="code-walkthrough" data-section="code-walkthrough">
+      <div class="section-heading">
+        <div><div class="section-kicker">CODE WALKTHROUGH</div><h2>Small snippets that explain the big design</h2></div>
+        <span class="section-status">Small code patterns from the POC</span>
+      </div>
+      <div class="code-tabs" role="tablist">
+        <button class="active" data-code="supervisor">Supervisor routing</button>
+        <button data-code="fanout">Parallel fan-out</button>
+        <button data-code="rag">RAG pipeline</button>
+        <button data-code="tool">Safe reservation</button>
+      </div>
+      <div class="code-view">
+        <div class="code-context" id="code-context">The Supervisor selects specialists. The important idea is that it routes work instead of trying to perform every task itself.</div>
+        <pre><code id="code-snippet"></code></pre>
+      </div>
+    </section>
+
+    <section class="panel trace-panel">
+      <div class="panel-head"><div><div class="section-kicker">OBSERVABILITY</div><h2>Agent Execution Trace</h2></div><button id="clear-trace" class="ghost">Clear</button></div>
+      <div class="trace-subtitle">Run a request above and watch the actual specialist lifecycle appear here.</div>
+      <div id="trace" class="trace"></div>
+    </section>
+
+    <footer class="footer">
+      <div><b>ParkMind AI</b><span>Portfolio POC · AI Solution Architect showcase</span></div>
+      <div>Local-first · Observable · Replaceable components · Safe action boundary</div>
+    </footer>
+  </main>
+
+  <div id="detail-modal" class="detail-modal" aria-hidden="true">
+    <div class="detail-backdrop" data-modal-close></div>
+    <section class="detail-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-sticky-head">
+        <div class="modal-eyebrow" id="modal-eyebrow">ARCHITECTURE DETAIL</div>
+        <button id="modal-close" class="modal-close" type="button" aria-label="Close details" data-modal-close>×</button>
+        <div class="modal-title-row"><h2 id="modal-title">Feature</h2><span id="modal-badge">DETAIL</span></div>
+      </div>
+      <p id="modal-summary" class="modal-summary"></p>
+      <div class="modal-grid">
+        <div class="modal-block"><span>WHAT IT DOES</span><p id="modal-what"></p></div>
+        <div class="modal-block"><span>WHY IT EXISTS</span><p id="modal-why"></p></div>
+        <div class="modal-block wide"><span>HOW IT WORKS</span><div id="modal-flow" class="modal-flow"></div></div>
+        <div class="modal-block wide"><span>REAL-TIME EXAMPLE</span><p id="modal-example"></p></div>
+        <div class="modal-block wide"><span>CODE PATTERN</span><pre><code id="modal-code"></code></pre></div>
+      </div>
+    </section>
+  </div>
+  <script src="/dashboard/app.js?v=20261002-18"></script>
+</body>
+</html>
